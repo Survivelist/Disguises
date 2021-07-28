@@ -1,0 +1,10 @@
+name: SurvivelistDisguises
+version: ${project.version}
+main: itzshmulik.survivelist.survivelistdisguises.SurvivelistDisguises
+api-version: 1.17
+authors: [ ItzShmulik ]
+description: Disguise to any animal you want!
+commands:
+  disguise:
+    description: Shows the disguises gui.
+    aliases: [d, disguises]
