@@ -7,7 +7,7 @@ public final class SurvivelistDisguises extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
 
-        getCommand("disguise").setExecutor(new Dis);
+        getCommand("disguise").setExecutor(new DisguiseCommand());
 
         getServer().getPluginManager().registerEvents(new ClickEvent(), this);
 
