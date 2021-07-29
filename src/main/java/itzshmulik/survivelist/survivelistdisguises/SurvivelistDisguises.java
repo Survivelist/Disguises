@@ -1,7 +1,4 @@
 package itzshmulik.survivelist.survivelistdisguises;
-
-import itzshmulik.survivelist.survivelistdisguises.Commands.DisguiseCommand;
-import itzshmulik.survivelist.survivelistdisguises.Events.ClickEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class SurvivelistDisguises extends JavaPlugin {
@@ -10,7 +7,7 @@ public final class SurvivelistDisguises extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
 
-        getCommand("disguise").setExecutor(new DisguiseCommand());
+        getCommand("disguise").setExecutor(new Dis);
 
         getServer().getPluginManager().registerEvents(new ClickEvent(), this);
 
