@@ -14,11 +14,14 @@ public class ClickEvent implements Listener {
 
         if(e.getView().getTitle().equals(title)){
 
+            boolean isDisguised = false;
+
             Player player = (Player) e.getWhoClicked();
 
             switch(e.getCurrentItem().getType()){
                 case BONE:
                     player.closeInventory();
+                    isDisguised = true;
             }
 
             e.setCancelled(true);

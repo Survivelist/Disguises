@@ -20,8 +20,6 @@ public class DisguiseCommand implements CommandExecutor {
         if(sender instanceof Player){
             Player player = (Player) sender;
 
-            boolean IsDisguised = false;
-
             String title = "Choose a disguise";
 
             Inventory gui = Bukkit.createInventory(player, 45, title);
