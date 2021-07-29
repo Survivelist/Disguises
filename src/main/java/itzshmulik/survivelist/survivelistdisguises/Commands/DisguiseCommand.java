@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 import org.jetbrains.annotations.NotNull;
 
 public class DisguiseCommand implements CommandExecutor {
@@ -24,10 +25,10 @@ public class DisguiseCommand implements CommandExecutor {
 
             Inventory gui = Bukkit.createInventory(player, 45, title);
 
-
+            ItemStack glass = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
+            ItemStack head = new ItemStack(Material.PLAYER_HEAD);
 
             // Items to show in the gui for each mob
-            ItemStack glass = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
             ItemStack skelaton = new ItemStack(Material.BONE);
             ItemStack zombie = new ItemStack(Material.ROTTEN_FLESH);
             ItemStack spider = new ItemStack(Material.STRING);
@@ -42,6 +43,12 @@ public class DisguiseCommand implements CommandExecutor {
             ItemMeta glass_meta = glass.getItemMeta();
             glass_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&r"));
             glass.setItemMeta(glass_meta);
+
+            // Head Item
+            ItemMeta head_meta = head.getItemMeta();
+            head_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&6Curently disguised as " + player.getName()));
+            head.setItemMeta(head_meta);
+
 
             // Skelaton Disguise
             ItemMeta skelaton_meta = skelaton.getItemMeta();
@@ -149,6 +156,8 @@ public class DisguiseCommand implements CommandExecutor {
             gui.setItem(14, cave_spider);
             gui.setItem(15, witch);
             gui.setItem(16,slime);
+
+            gui.setItem(40, head);
             player.openInventory(gui);
 
         }
