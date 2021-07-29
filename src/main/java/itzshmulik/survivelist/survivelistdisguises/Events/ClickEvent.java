@@ -20,8 +20,15 @@ public class ClickEvent implements Listener {
 
             switch(e.getCurrentItem().getType()){
                 case BONE:
-                    player.closeInventory();
-                    isDisguised = true;
+
+                    if(player.hasPermission("disguise.skelaton")) {
+
+                        player.closeInventory();
+                        isDisguised = true;
+
+                        player.setInvisible(true);
+
+                    }
             }
 
             e.setCancelled(true);
