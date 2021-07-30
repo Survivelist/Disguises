@@ -1,5 +1,6 @@
 package itzshmulik.survivelist.survivelistdisguises.Events;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,14 +21,23 @@ public class ClickEvent implements Listener {
 
             switch(e.getCurrentItem().getType()){
                 case BONE:
-
                     if(player.hasPermission("disguise.skelaton")) {
 
+                            player.closeInventory();
+                            isDisguised = true;
+
+                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aDisguised as skelaton!"));
+
+                            player.setInvisible(true);
+                    }
+                    break;
+                case PLAYER_HEAD:
+                    if(isDisguised = true){
+
                         player.closeInventory();
-                        isDisguised = true;
+                        isDisguised = false;
 
-                        player.setInvisible(true);
-
+                        player.setInvisible(false);
                     }
             }
 

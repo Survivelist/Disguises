@@ -45,8 +45,9 @@ public class DisguiseCommand implements CommandExecutor {
             glass.setItemMeta(glass_meta);
 
             // Head Item
-            ItemMeta head_meta = head.getItemMeta();
-            head_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&6Curently disguised as " + player.getName()));
+            SkullMeta head_meta = (SkullMeta) head.getItemMeta();
+            head_meta.setOwningPlayer(player);
+            head_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&6Currently disguised as " + player.getName()));
             head.setItemMeta(head_meta);
 
 
