@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.Inventory;
 
 public class ClickEvent implements Listener {
 
@@ -20,17 +21,33 @@ public class ClickEvent implements Listener {
             Player player = (Player) e.getWhoClicked();
 
             switch(e.getCurrentItem().getType()){
+
+                // Skelaton disguise
                 case BONE:
                     if(player.hasPermission("disguise.skelaton")) {
 
                             player.closeInventory();
                             isDisguised = true;
 
-                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aDisguised as skelaton!"));
+                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aYou're now disguised as a skelaton!"));
 
                             player.setInvisible(true);
                     }
                     break;
+
+                // Zombie disguise
+                case ROTTEN_FLESH:
+                    if(player.hasPermission("disguise.zombie")){
+
+                        player.closeInventory();
+                        isDisguised = true;
+
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aYou're now disguised as a zombie!"));
+
+                        player.setInvisible(true);
+                    }
+                    break;
+
                 case PLAYER_HEAD:
                     if(isDisguised = true){
 
@@ -39,6 +56,7 @@ public class ClickEvent implements Listener {
 
                         player.setInvisible(false);
                     }
+                    break;
             }
 
             e.setCancelled(true);
