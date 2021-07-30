@@ -14,6 +14,9 @@ public final class SurvivelistDisguises extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new ClickEvent(), this);
 
+        getConfig().options().copyDefaults();
+        saveDefaultConfig();
+
     }
 
     @Override

@@ -27,6 +27,7 @@ public class DisguiseCommand implements CommandExecutor {
 
             ItemStack glass = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
             ItemStack head = new ItemStack(Material.PLAYER_HEAD);
+            ItemStack undis = new ItemStack(Material.RED_WOOL);
 
             // Items to show in the gui for each mob
             ItemStack skelaton = new ItemStack(Material.BONE);
@@ -47,8 +48,13 @@ public class DisguiseCommand implements CommandExecutor {
             // Head Item
             SkullMeta head_meta = (SkullMeta) head.getItemMeta();
             head_meta.setOwningPlayer(player);
-            head_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&6Currently disguised as " + player.getName()));
+            head_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&6" + player.getName()));
             head.setItemMeta(head_meta);
+
+            // Undisguise Item
+            ItemMeta undis_meta = undis.getItemMeta();
+            undis_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lUndisguise"));
+            undis.setItemMeta(undis_meta);
 
 
             // Skelaton Disguise
@@ -158,6 +164,7 @@ public class DisguiseCommand implements CommandExecutor {
             gui.setItem(15, witch);
             gui.setItem(16,slime);
 
+            gui.setItem(36, undis);
             gui.setItem(40, head);
             player.openInventory(gui);
 

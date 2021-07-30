@@ -48,13 +48,20 @@ public class ClickEvent implements Listener {
                     }
                     break;
 
-                case PLAYER_HEAD:
+                // Undis Item
+                case RED_WOOL:
                     if(isDisguised = true){
 
                         player.closeInventory();
                         isDisguised = false;
 
-                        player.setInvisible(false);
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', ));
+
+                    }else {
+
+                        player.closeInventory();
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&l[&eSurvivelist Disguises&6&l] &cYou are not disguised!"));
+
                     }
                     break;
             }
