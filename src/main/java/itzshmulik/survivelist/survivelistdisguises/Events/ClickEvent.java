@@ -1,19 +1,25 @@
 package itzshmulik.survivelist.survivelistdisguises.Events;
 
+import itzshmulik.survivelist.survivelistdisguises.SurvivelistDisguises;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.Inventory;
+import org.bukkit.plugin.java.JavaPlugin;
 
 public class ClickEvent implements Listener {
+
+    private final JavaPlugin plugin = JavaPlugin.getProvidingPlugin(getClass());
 
     @EventHandler
     public void ClickEvent(InventoryClickEvent e){
 
         String title = "Choose a disguise";
 
+        String prefix = plugin.getConfig().getString("Messages-prefix");
+        String d_msg = plugin.getConfig().getString("Disguise-message");
+        String und_msg = plugin.getConfig().getString("Undisguise-message");
         if(e.getView().getTitle().equals(title)){
 
             boolean isDisguised = false;
@@ -29,7 +35,7 @@ public class ClickEvent implements Listener {
                             player.closeInventory();
                             isDisguised = true;
 
-                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aYou're now disguised as a skelaton!"));
+                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
 
                             player.setInvisible(true);
                     }
@@ -42,7 +48,7 @@ public class ClickEvent implements Listener {
                         player.closeInventory();
                         isDisguised = true;
 
-                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aYou're now disguised as a zombie!"));
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
 
                         player.setInvisible(true);
                     }
@@ -55,12 +61,12 @@ public class ClickEvent implements Listener {
                         player.closeInventory();
                         isDisguised = false;
 
-                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', ));
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + und_msg));
 
                     }else {
 
                         player.closeInventory();
-                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&l[&eSurvivelist Disguises&6&l] &cYou are not disguised!"));
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&cYou are not disguised!"));
 
                     }
                     break;

@@ -1,1 +1,5 @@
-Messages prefix: &6&l[&eSurvivelist Disguises&6&l]
+Messages-prefix: &6&l[&eSurvivelist Disguises&6&l]
+
+Disguise-message: &aYou are now disguised
+
+Undisguised-message: &cYou're no longer disguised
