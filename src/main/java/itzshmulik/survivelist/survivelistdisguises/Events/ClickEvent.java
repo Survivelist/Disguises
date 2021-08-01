@@ -45,6 +45,17 @@ public class ClickEvent implements Listener {
                 case ROTTEN_FLESH:
                     if(player.hasPermission("disguise.zombie")){
 
+                    player.closeInventory();
+                    isDisguised = true;
+
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
+
+                    player.setInvisible(true);
+                }
+                    break;
+                case STRING:
+                    if(player.hasPermission("disguise.spider")){
+
                         player.closeInventory();
                         isDisguised = true;
 
@@ -56,17 +67,18 @@ public class ClickEvent implements Listener {
 
                 // Undis Item
                 case RED_WOOL:
-                    if(isDisguised = true){
+                    if(isDisguised == true){
 
                         player.closeInventory();
                         isDisguised = false;
+                        player.setInvisible(false);
 
                         player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + und_msg));
 
-                    }else {
+                    }else{
 
                         player.closeInventory();
-                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&cYou are not disguised!"));
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &cYou are not disguised!"));
 
                     }
                     break;
