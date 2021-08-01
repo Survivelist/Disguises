@@ -1,5 +1,6 @@
 package itzshmulik.survivelist.survivelistdisguises.events;
 
+import itzshmulik.survivelist.survivelistdisguises.commands.DisguiseCommand;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -14,12 +15,10 @@ public class MenuListener implements Listener {
     @EventHandler
     public void ClickEvent(InventoryClickEvent e){
 
-        String title = "Choose a disguise";
-
         String prefix = plugin.getConfig().getString("Messages-prefix");
         String d_msg = plugin.getConfig().getString("Disguise-message");
         String und_msg = plugin.getConfig().getString("Undisguise-message");
-        if(e.getView().getTitle().equals(title)){
+        if(e.getView().getTitle().equals(DisguiseCommand.TITLE)){
 
             boolean isDisguised = false;
 

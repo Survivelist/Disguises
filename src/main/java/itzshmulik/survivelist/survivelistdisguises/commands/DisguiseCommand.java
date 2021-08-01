@@ -15,180 +15,185 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 public class DisguiseCommand implements CommandExecutor {
+    public static final String TITLE = "Choose a disguise";
 
     private final JavaPlugin plugin = JavaPlugin.getProvidingPlugin(getClass());
+    final ItemStack glass = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
+    final ItemStack head = new ItemStack(Material.PLAYER_HEAD);
+    final ItemStack undis = new ItemStack(Material.RED_WOOL);
 
+    // Items to show in the gui for each mob
+    final ItemStack skeleton = new ItemStack(Material.BONE);
+    final ItemStack zombie = new ItemStack(Material.ROTTEN_FLESH);
+    final ItemStack spider = new ItemStack(Material.STRING);
+    final ItemStack creeper = new ItemStack(Material.GUNPOWDER);
+    final ItemStack cave_spider = new ItemStack(Material.CAVE_SPIDER_SPAWN_EGG);
+    final ItemStack witch = new ItemStack(Material.WITCH_SPAWN_EGG);
+    final ItemStack slime = new ItemStack(Material.SLIME_BALL);
+
+    public DisguiseCommand() {
+        // Names for the gui items
+
+        // Glass Item
+        ItemMeta glass_meta = glass.getItemMeta();
+        glass_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&r"));
+        glass.setItemMeta(glass_meta);
+
+        // Undisguise Item
+        ItemMeta undis_meta = undis.getItemMeta();
+        undis_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lUndisguise"));
+        undis.setItemMeta(undis_meta);
+    }
+
+    @SuppressWarnings("deprecation")
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+        // Moved reload section up above player check so console can reload the plugin too
+        if (args.length >= 1 && args[0].equalsIgnoreCase("reload")) {
+            Player player = (Player) sender;
+            if (player.hasPermission("disguises.reload")) {
+                plugin.reloadConfig();
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aReloading config!"));
+            } else {
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cYou have no permission to use that command!"));
+            }
+        }
+        // Exit if not player
+        if (!(sender instanceof Player)) {
+            return false;
+        }
+        // Player
+        Player player = (Player) sender;
 
-        if(sender instanceof Player) {
-            if (args.length == 0) {
-                Player player = (Player) sender;
+        Inventory gui = Bukkit.createInventory(player, 45, TITLE);
 
-                String title = "Choose a disguise";
+        // Names for the gui items (common forms moved to constructor)
 
-                Inventory gui = Bukkit.createInventory(player, 45, title);
+        // Head Item
+        final ItemStack head = new ItemStack(this.head); // Makes local copy
+        SkullMeta head_meta = (SkullMeta) head.getItemMeta();
+        head_meta.setOwningPlayer(player);
+        head_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&6" + player.getName()));
+        head.setItemMeta(head_meta);
 
-                ItemStack glass = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
-                ItemStack head = new ItemStack(Material.PLAYER_HEAD);
-                ItemStack undis = new ItemStack(Material.RED_WOOL);
+        // Skeleton Disguise
+        final ItemStack skeleton = new ItemStack(this.skeleton); // local copy
+        ItemMeta skeleton_meta = skeleton.getItemMeta();
+        if (player.hasPermission("disguise.skelaton")) {
 
-                // Items to show in the gui for each mob
-                ItemStack skelaton = new ItemStack(Material.BONE);
-                ItemStack zombie = new ItemStack(Material.ROTTEN_FLESH);
-                ItemStack spider = new ItemStack(Material.STRING);
-                ItemStack creeper = new ItemStack(Material.GUNPOWDER);
-                ItemStack cave_spider = new ItemStack(Material.CAVE_SPIDER_SPAWN_EGG);
-                ItemStack witch = new ItemStack(Material.WITCH_SPAWN_EGG);
-                ItemStack slime = new ItemStack(Material.SLIME_BALL);
+            skeleton_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lSkelaton Disguise"));
 
-                // Names for the gui items
+        } else {
 
-                // Glass Item
-                ItemMeta glass_meta = glass.getItemMeta();
-                glass_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&r"));
-                glass.setItemMeta(glass_meta);
+            skeleton_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lSkelaton Disguise"));
 
-                // Head Item
-                SkullMeta head_meta = (SkullMeta) head.getItemMeta();
-                head_meta.setOwningPlayer(player);
-                head_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&6" + player.getName()));
-                head.setItemMeta(head_meta);
+        }
+        skeleton.setItemMeta(skeleton_meta);
 
-                // Undisguise Item
-                ItemMeta undis_meta = undis.getItemMeta();
-                undis_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lUndisguise"));
-                undis.setItemMeta(undis_meta);
+        // Zombie Disguise
+        final ItemStack zombie = new ItemStack(this.zombie); // local copy
+        ItemMeta zombie_meta = zombie.getItemMeta();
+        if (player.hasPermission("disguise.zombie")) {
 
+            zombie_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lZombie Disguise"));
 
-                // Skelaton Disguise
-                ItemMeta skelaton_meta = skelaton.getItemMeta();
-                if (player.hasPermission("disguise.skelaton")) {
+        } else {
 
-                    skelaton_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lSkelaton Disguise"));
+            zombie_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lZombie Disguise"));
 
-                } else {
+        }
+        zombie.setItemMeta(zombie_meta);
 
-                    skelaton_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lSkelaton Disguise"));
+        // Spider Disguise
+        final ItemStack spider = new ItemStack(this.spider); // local copy
+        ItemMeta spider_meta = spider.getItemMeta();
+        if (player.hasPermission("disguise.spider")) {
 
-                }
-                skelaton.setItemMeta(skelaton_meta);
+            spider_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lSpider Disguise"));
 
-                // Zombie Disguise
-                ItemMeta zombie_meta = zombie.getItemMeta();
-                if (player.hasPermission("disguise.zombie")) {
+        } else {
 
-                    zombie_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lZombie Disguise"));
+            spider_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lSpider Disguise"));
 
-                } else {
+        }
+        spider.setItemMeta(spider_meta);
 
-                    zombie_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lZombie Disguise"));
+        // Creeper Disguise
+        final ItemStack creeper = new ItemStack(this.creeper); // local copy
+        ItemMeta creeper_meta = creeper.getItemMeta();
+        if (player.hasPermission("disguise.creeper")) {
 
-                }
-                zombie.setItemMeta(zombie_meta);
+            creeper_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lCreeper Disguise"));
 
-                // Spider Disguise
-                ItemMeta spider_meta = spider.getItemMeta();
-                if (player.hasPermission("disguise.spider")) {
+        } else {
 
-                    spider_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lSpider Disguise"));
+            creeper_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lCreeper Disguise"));
 
-                } else {
+        }
+        creeper.setItemMeta(creeper_meta);
 
-                    spider_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lSpider Disguise"));
+        // CaveSpider Disguise
+        final ItemStack cave_spider = new ItemStack(this.cave_spider); // local copy
+        ItemMeta cave_meta = cave_spider.getItemMeta();
+        if (player.hasPermission("disguise.cavespider")) {
 
-                }
-                spider.setItemMeta(spider_meta);
+            cave_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lCave Spider Disguise"));
 
-                // Creeper Disguise
-                ItemMeta creeper_meta = creeper.getItemMeta();
-                if (player.hasPermission("disguise.creeper")) {
+        } else {
 
-                    creeper_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lCreeper Disguise"));
+            cave_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lCave Spider Disguise"));
 
-                } else {
+        }
+        cave_spider.setItemMeta(cave_meta);
 
-                    creeper_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lCreeper Disguise"));
+        // Witch Disguise
+        final ItemStack witch = new ItemStack(this.witch); // local copy
+        ItemMeta witch_meta = witch.getItemMeta();
+        if (player.hasPermission("disguise.witch")) {
 
-                }
-                creeper.setItemMeta(creeper_meta);
+            witch_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lWitch Disguise"));
 
-                // CaveSpider Disguise
-                ItemMeta cave_meta = cave_spider.getItemMeta();
-                if (player.hasPermission("disguise.cavespider")) {
+        } else {
 
-                    cave_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lCave Spider Disguise"));
+            witch_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lWitch Disguise"));
 
-                } else {
+        }
+        witch.setItemMeta(witch_meta);
 
-                    cave_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lCave Spider Disguise"));
+        // Slime Disguise
+        final ItemStack slime = new ItemStack(this.slime); // local copy
+        ItemMeta slime_meta = slime.getItemMeta();
+        if (player.hasPermission("disguise.slime")) {
 
-                }
-                cave_spider.setItemMeta(cave_meta);
+            slime_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lSlime Disguise"));
 
-                // Witch Disguise
-                ItemMeta witch_meta = witch.getItemMeta();
-                if (player.hasPermission("disguise.witch")) {
+        } else {
 
-                    witch_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lWitch Disguise"));
+            slime_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lSlime Disguise"));
 
-                } else {
+        }
+        slime.setItemMeta(slime_meta);
 
-                    witch_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lWitch Disguise"));
+        // List of items to put in the gui
+        gui.setItem(10, skeleton);
+        gui.setItem(11, zombie);
+        gui.setItem(12, spider);
+        gui.setItem(13, creeper);
+        gui.setItem(14, cave_spider);
+        gui.setItem(15, witch);
+        gui.setItem(16, slime);
 
-                }
-                witch.setItemMeta(witch_meta);
+        gui.setItem(36, undis);
+        gui.setItem(40, head);
 
-                // Slime Disguise
-                ItemMeta slime_meta = slime.getItemMeta();
-                if (player.hasPermission("disguise.slime")) {
-
-                    slime_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lSlime Disguise"));
-
-                } else {
-
-                    slime_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lSlime Disguise"));
-
-                }
-                slime.setItemMeta(slime_meta);
-
-
-                for (int i = 0; i <= 44; i++) {
-                    if (gui.getItem(i) == null) {
-                        gui.setItem(i, glass);
-                    }
-                }
-
-                // List of items to put in the gui
-                gui.setItem(10, skelaton);
-                gui.setItem(11, zombie);
-                gui.setItem(12, spider);
-                gui.setItem(13, creeper);
-                gui.setItem(14, cave_spider);
-                gui.setItem(15, witch);
-                gui.setItem(16, slime);
-
-                gui.setItem(36, undis);
-                gui.setItem(40, head);
-                player.openInventory(gui);
-
-
-            }else {
-                if(args[0].equalsIgnoreCase("reload")){
-                    Player player = (Player) sender;
-                    if(player.hasPermission("disguises.reload")) {
-                        plugin.reloadConfig();
-                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aReloading config!"));
-                    }else {
-                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cYou have no permission to use that command!"));
-                    }
-                }
+        // Moved filler operation to after placing our items in
+        for (int i = 0; i < gui.getSize(); i++) { // < is exclusive, it'll still stop at 44 just making the code more dynamic
+            if (gui.getItem(i) == null) {
+                gui.setItem(i, glass);
             }
         }
 
-
-
-
+        player.openInventory(gui);
         return true;
     }
 }
