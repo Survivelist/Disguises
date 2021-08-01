@@ -1,7 +1,7 @@
 package itzshmulik.survivelist.survivelistdisguises.commands;
 
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -16,6 +16,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class DisguiseCommand implements CommandExecutor {
     public static final String TITLE = "Choose a disguise";
+    static final String DEFAULT_COLOR = "&a";
+    static final String DISABLED_COLOR = "&c";
 
     private final JavaPlugin plugin = JavaPlugin.getProvidingPlugin(getClass());
     final ItemStack glass = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
@@ -23,13 +25,22 @@ public class DisguiseCommand implements CommandExecutor {
     final ItemStack undis = new ItemStack(Material.RED_WOOL);
 
     // Items to show in the gui for each mob
+    //style=enabled
     final ItemStack skeleton = new ItemStack(Material.BONE);
     final ItemStack zombie = new ItemStack(Material.ROTTEN_FLESH);
     final ItemStack spider = new ItemStack(Material.STRING);
     final ItemStack creeper = new ItemStack(Material.GUNPOWDER);
-    final ItemStack cave_spider = new ItemStack(Material.CAVE_SPIDER_SPAWN_EGG);
+    final ItemStack caveSpider = new ItemStack(Material.CAVE_SPIDER_SPAWN_EGG);
     final ItemStack witch = new ItemStack(Material.WITCH_SPAWN_EGG);
     final ItemStack slime = new ItemStack(Material.SLIME_BALL);
+    //style=disabled (copy type)
+    final ItemStack skeletonDisabled = new ItemStack(skeleton);
+    final ItemStack zombieDisabled = new ItemStack(zombie);
+    final ItemStack spiderDisabled = new ItemStack(spider);
+    final ItemStack creeperDisabled = new ItemStack(creeper);
+    final ItemStack caveSpiderDisabled = new ItemStack(caveSpider);
+    final ItemStack witchDisabled = new ItemStack(witch);
+    final ItemStack slimeDisabled = new ItemStack(slime);
 
     public DisguiseCommand() {
         // Names for the gui items
@@ -43,9 +54,38 @@ public class DisguiseCommand implements CommandExecutor {
         ItemMeta undis_meta = undis.getItemMeta();
         undis_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lUndisguise"));
         undis.setItemMeta(undis_meta);
+
+        // Prepare toggleable items
+        //skeleton
+        final String skeletonText = "&lSkelaton Disguise";
+        nameItem(skeleton, skeletonText);
+        nameItemDisabled(skeletonDisabled, skeletonText);
+        //zombie
+        final String zombieText = "&lZombie Disguise";
+        nameItem(zombie, zombieText);
+        nameItemDisabled(zombieDisabled, zombieText);
+        //spider
+        final String spiderText = "&lSpider Disguise";
+        nameItem(spider, spiderText);
+        nameItemDisabled(spiderDisabled, spiderText);
+        //creeper
+        final String creeperText = "&lCreeper Disguise";
+        nameItem(creeper, creeperText);
+        nameItemDisabled(creeperDisabled, creeperText);
+        //cave_spider
+        final String cave_spiderText = "&lCave Spider Disguise";
+        nameItem(caveSpider, cave_spiderText);
+        nameItemDisabled(caveSpiderDisabled, cave_spiderText);
+        //witch
+        final String witchText = "&lWitch Disguise";
+        nameItem(witch, witchText);
+        nameItemDisabled(witchDisabled, witchText);
+        //slime
+        final String slimeText = "&lSlime Disguise";
+        nameItem(slime, slimeText);
+        nameItemDisabled(slimeDisabled, slimeText);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         // Moved reload section up above player check so console can reload the plugin too
@@ -70,111 +110,34 @@ public class DisguiseCommand implements CommandExecutor {
         // Names for the gui items (common forms moved to constructor)
 
         // Head Item
-        final ItemStack head = new ItemStack(this.head); // Makes local copy
+        final ItemStack head = new ItemStack(this.head); // Make local copy
         SkullMeta head_meta = (SkullMeta) head.getItemMeta();
         head_meta.setOwningPlayer(player);
         head_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&6" + player.getName()));
         head.setItemMeta(head_meta);
 
         // Skeleton Disguise
-        final ItemStack skeleton = new ItemStack(this.skeleton); // local copy
-        ItemMeta skeleton_meta = skeleton.getItemMeta();
-        if (player.hasPermission("disguise.skelaton")) {
-
-            skeleton_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lSkelaton Disguise"));
-
-        } else {
-
-            skeleton_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lSkelaton Disguise"));
-
-        }
-        skeleton.setItemMeta(skeleton_meta);
+        final ItemStack skeleton = player.hasPermission("disguise.skelaton") ? this.skeleton : skeletonDisabled;
 
         // Zombie Disguise
-        final ItemStack zombie = new ItemStack(this.zombie); // local copy
-        ItemMeta zombie_meta = zombie.getItemMeta();
-        if (player.hasPermission("disguise.zombie")) {
-
-            zombie_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lZombie Disguise"));
-
-        } else {
-
-            zombie_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lZombie Disguise"));
-
-        }
-        zombie.setItemMeta(zombie_meta);
+        final ItemStack zombie = player.hasPermission("disguise.zombie") ? this.zombie : zombieDisabled;
 
         // Spider Disguise
-        final ItemStack spider = new ItemStack(this.spider); // local copy
-        ItemMeta spider_meta = spider.getItemMeta();
-        if (player.hasPermission("disguise.spider")) {
-
-            spider_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lSpider Disguise"));
-
-        } else {
-
-            spider_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lSpider Disguise"));
-
-        }
-        spider.setItemMeta(spider_meta);
+        final ItemStack spider = player.hasPermission("disguise.spider") ? this.spider : spiderDisabled;
 
         // Creeper Disguise
-        final ItemStack creeper = new ItemStack(this.creeper); // local copy
-        ItemMeta creeper_meta = creeper.getItemMeta();
-        if (player.hasPermission("disguise.creeper")) {
-
-            creeper_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lCreeper Disguise"));
-
-        } else {
-
-            creeper_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lCreeper Disguise"));
-
-        }
-        creeper.setItemMeta(creeper_meta);
+        final ItemStack creeper = player.hasPermission("disguise.creeper") ? this.creeper : creeperDisabled;
 
         // CaveSpider Disguise
-        final ItemStack cave_spider = new ItemStack(this.cave_spider); // local copy
-        ItemMeta cave_meta = cave_spider.getItemMeta();
-        if (player.hasPermission("disguise.cavespider")) {
-
-            cave_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lCave Spider Disguise"));
-
-        } else {
-
-            cave_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lCave Spider Disguise"));
-
-        }
-        cave_spider.setItemMeta(cave_meta);
+        final ItemStack cave_spider = player.hasPermission("disguise.cavespider") ? caveSpider : caveSpiderDisabled;
 
         // Witch Disguise
-        final ItemStack witch = new ItemStack(this.witch); // local copy
-        ItemMeta witch_meta = witch.getItemMeta();
-        if (player.hasPermission("disguise.witch")) {
-
-            witch_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lWitch Disguise"));
-
-        } else {
-
-            witch_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lWitch Disguise"));
-
-        }
-        witch.setItemMeta(witch_meta);
+        final ItemStack witch = player.hasPermission("disguise.witch") ? this.witch : witchDisabled;
 
         // Slime Disguise
-        final ItemStack slime = new ItemStack(this.slime); // local copy
-        ItemMeta slime_meta = slime.getItemMeta();
-        if (player.hasPermission("disguise.slime")) {
+        final ItemStack slime = player.hasPermission("disguise.slime") ? this.slime : slimeDisabled;
 
-            slime_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lSlime Disguise"));
-
-        } else {
-
-            slime_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lSlime Disguise"));
-
-        }
-        slime.setItemMeta(slime_meta);
-
-        // List of items to put in the gui
+        // Place items in the gui
         gui.setItem(10, skeleton);
         gui.setItem(11, zombie);
         gui.setItem(12, spider);
@@ -195,5 +158,23 @@ public class DisguiseCommand implements CommandExecutor {
 
         player.openInventory(gui);
         return true;
+    }
+
+    // mutates item
+    static void nameItem(ItemStack item, String name) {
+        nameItemColor(item, DEFAULT_COLOR, name);
+    }
+
+    // mutates item
+    static void nameItemDisabled(ItemStack item, String name) {
+        nameItemColor(item, DISABLED_COLOR, name);
+    }
+
+    // mutates item
+    static void nameItemColor(ItemStack item, String color, String name) {
+        final ItemMeta meta = item.getItemMeta();
+        //noinspection deprecation
+        meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', color + name));
+        item.setItemMeta(meta);
     }
 }
