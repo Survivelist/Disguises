@@ -46,14 +46,10 @@ public class DisguiseCommand implements CommandExecutor {
         // Names for the gui items
 
         // Glass Item
-        ItemMeta glass_meta = glass.getItemMeta();
-        glass_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&r"));
-        glass.setItemMeta(glass_meta);
+        nameItemColor(glass, "&r", "");
 
         // Undisguise Item
-        ItemMeta undis_meta = undis.getItemMeta();
-        undis_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lUndisguise"));
-        undis.setItemMeta(undis_meta);
+        nameItemColor(undis, "&c", "&lUndisguise");
 
         // Prepare toggleable items
         //skeleton
@@ -86,6 +82,7 @@ public class DisguiseCommand implements CommandExecutor {
         nameItemDisabled(slimeDisabled, slimeText);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         // Moved reload section up above player check so console can reload the plugin too
