@@ -1,4 +1,4 @@
-package itzshmulik.survivelist.survivelistdisguises.Commands;
+package itzshmulik.survivelist.survivelistdisguises.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
