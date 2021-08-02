@@ -22,4 +22,8 @@ public enum Disguise {
         this.menuMaterial = menuMaterial;
         this.menuText = menuText;
     }
+
+    public boolean testItem(ItemStack itemStack) {
+        return itemStack != null && itemStack.getType() == menuMaterial;
+    }
 }

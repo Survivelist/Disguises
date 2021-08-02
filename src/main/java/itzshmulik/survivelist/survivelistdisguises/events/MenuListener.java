@@ -36,10 +36,7 @@ public class MenuListener implements Listener {
         // cast the player
         final Player player = (Player) e.getWhoClicked();
 
-        // clicked material type
-        Material type = currentItem.getType();
-
-        if (type == Disguise.SKELETON.menuMaterial) {
+        if (Disguise.SKELETON.testItem(currentItem)) {
             if (player.hasPermission("disguise.skelaton")) {
 
                 player.closeInventory();
@@ -50,7 +47,7 @@ public class MenuListener implements Listener {
                 player.setInvisible(true);
             }
 
-        } else if (type == Disguise.ZOMBIE.menuMaterial) {
+        } else if (Disguise.ZOMBIE.testItem(currentItem)) {
             if (player.hasPermission("disguise.zombie")) {
 
                 player.closeInventory();
@@ -60,7 +57,7 @@ public class MenuListener implements Listener {
 
                 player.setInvisible(true);
             }
-        } else if (type == Disguise.SPIDER.menuMaterial) {
+        } else if (Disguise.SPIDER.testItem(currentItem)) {
             if (player.hasPermission("disguise.spider")) {
 
                 player.closeInventory();
@@ -71,8 +68,7 @@ public class MenuListener implements Listener {
                 player.setInvisible(true);
             }
 
-            // Undis Item
-        } else if (type == Material.RED_WOOL) {
+        } else if (currentItem.getType() == Material.RED_WOOL) { // Undis item
             if (disguised.containsKey(player)) {
 
                 player.closeInventory();
