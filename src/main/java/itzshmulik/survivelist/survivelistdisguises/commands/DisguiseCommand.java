@@ -1,5 +1,6 @@
 package itzshmulik.survivelist.survivelistdisguises.commands;
 
+import itzshmulik.survivelist.survivelistdisguises.model.Disguise;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -26,21 +27,9 @@ public class DisguiseCommand implements CommandExecutor {
 
     // Items to show in the gui for each mob
     //style=enabled
-    final ItemStack skeleton = new ItemStack(Material.BONE);
-    final ItemStack zombie = new ItemStack(Material.ROTTEN_FLESH);
-    final ItemStack spider = new ItemStack(Material.STRING);
-    final ItemStack creeper = new ItemStack(Material.GUNPOWDER);
-    final ItemStack caveSpider = new ItemStack(Material.CAVE_SPIDER_SPAWN_EGG);
-    final ItemStack witch = new ItemStack(Material.WITCH_SPAWN_EGG);
-    final ItemStack slime = new ItemStack(Material.SLIME_BALL);
+    final ItemStack skeleton, zombie, spider, creeper, caveSpider, witch, slime;
     //style=disabled (copy type)
-    final ItemStack skeletonDisabled = new ItemStack(skeleton);
-    final ItemStack zombieDisabled = new ItemStack(zombie);
-    final ItemStack spiderDisabled = new ItemStack(spider);
-    final ItemStack creeperDisabled = new ItemStack(creeper);
-    final ItemStack caveSpiderDisabled = new ItemStack(caveSpider);
-    final ItemStack witchDisabled = new ItemStack(witch);
-    final ItemStack slimeDisabled = new ItemStack(slime);
+    final ItemStack skeletonDisabled, zombieDisabled, spiderDisabled, creeperDisabled, caveSpiderDisabled, witchDisabled, slimeDisabled;
 
     public DisguiseCommand() {
         // Names for the gui items
@@ -53,33 +42,26 @@ public class DisguiseCommand implements CommandExecutor {
 
         // Prepare toggleable items
         //skeleton
-        final String skeletonText = "&lSkelaton Disguise";
-        nameItem(skeleton, skeletonText);
-        nameItemDisabled(skeletonDisabled, skeletonText);
+        this.skeleton = makeMenuItem(Disguise.SKELETON);
+        skeletonDisabled = makeMenuItemDisabled(Disguise.SKELETON);
         //zombie
-        final String zombieText = "&lZombie Disguise";
-        nameItem(zombie, zombieText);
-        nameItemDisabled(zombieDisabled, zombieText);
+        this.zombie = makeMenuItem(Disguise.ZOMBIE);
+        zombieDisabled = makeMenuItemDisabled(Disguise.ZOMBIE);
         //spider
-        final String spiderText = "&lSpider Disguise";
-        nameItem(spider, spiderText);
-        nameItemDisabled(spiderDisabled, spiderText);
+        this.spider = makeMenuItem(Disguise.SPIDER);
+        spiderDisabled = makeMenuItemDisabled(Disguise.SPIDER);
         //creeper
-        final String creeperText = "&lCreeper Disguise";
-        nameItem(creeper, creeperText);
-        nameItemDisabled(creeperDisabled, creeperText);
+        this.creeper = makeMenuItem(Disguise.CREEPER);
+        creeperDisabled = makeMenuItemDisabled(Disguise.CREEPER);
         //cave_spider
-        final String cave_spiderText = "&lCave Spider Disguise";
-        nameItem(caveSpider, cave_spiderText);
-        nameItemDisabled(caveSpiderDisabled, cave_spiderText);
+        this.caveSpider = makeMenuItem(Disguise.CAVE_SPIDER);
+        caveSpiderDisabled = makeMenuItemDisabled(Disguise.CAVE_SPIDER);
         //witch
-        final String witchText = "&lWitch Disguise";
-        nameItem(witch, witchText);
-        nameItemDisabled(witchDisabled, witchText);
+        this.witch = makeMenuItem(Disguise.WITCH);
+        witchDisabled = makeMenuItemDisabled(Disguise.WITCH);
         //slime
-        final String slimeText = "&lSlime Disguise";
-        nameItem(slime, slimeText);
-        nameItemDisabled(slimeDisabled, slimeText);
+        this.slime = makeMenuItem(Disguise.SLIME);
+        slimeDisabled = makeMenuItemDisabled(Disguise.SLIME);
     }
 
     @SuppressWarnings("deprecation")
@@ -157,21 +139,22 @@ public class DisguiseCommand implements CommandExecutor {
         return true;
     }
 
-    // mutates item
-    static void nameItem(ItemStack item, String name) {
-        nameItemColor(item, DEFAULT_COLOR, name);
+    // makes item
+    static ItemStack makeMenuItem(Disguise disguise) {
+        return nameItemColor(new ItemStack(disguise.menuItem), DEFAULT_COLOR, disguise.menuText);
+    }
+
+    // makes item
+    static ItemStack makeMenuItemDisabled(Disguise disguise) {
+        return nameItemColor(new ItemStack(disguise.menuItem), DISABLED_COLOR, disguise.menuText);
     }
 
     // mutates item
-    static void nameItemDisabled(ItemStack item, String name) {
-        nameItemColor(item, DISABLED_COLOR, name);
-    }
-
-    // mutates item
-    static void nameItemColor(ItemStack item, String color, String name) {
+    static ItemStack nameItemColor(ItemStack item, String color, String name) {
         final ItemMeta meta = item.getItemMeta();
         //noinspection deprecation
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', color + name));
         item.setItemMeta(meta);
+        return item;
     }
 }
