@@ -77,65 +77,68 @@ public class DisguiseCommand implements CommandExecutor {
                 player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cYou have no permission to use that command!"));
             }
         }
-        // Exit if not player
-        if (!(sender instanceof Player)) {
-            return false;
-        }
-        // Player
-        Player player = (Player) sender;
 
-        Inventory gui = Bukkit.createInventory(player, 45, TITLE);
+            if(args.length == 0) {
+                // Exit if not player
+                if (!(sender instanceof Player)) {
+                    return false;
+                }
+                // Player
+                Player player = (Player) sender;
 
-        // Names for the gui items (common forms moved to constructor)
+                Inventory gui = Bukkit.createInventory(player, 45, TITLE);
 
-        // Head Item
-        final ItemStack head = new ItemStack(this.head); // Make local copy
-        SkullMeta head_meta = (SkullMeta) head.getItemMeta();
-        head_meta.setOwningPlayer(player);
-        head_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&6" + player.getName()));
-        head.setItemMeta(head_meta);
+                // Names for the gui items (common forms moved to constructor)
 
-        // Skeleton Disguise
-        final ItemStack skeleton = player.hasPermission("disguise.skelaton") ? this.skeleton : skeletonDisabled;
+                // Head Item
+                final ItemStack head = new ItemStack(this.head); // Make local copy
+                SkullMeta head_meta = (SkullMeta) head.getItemMeta();
+                head_meta.setOwningPlayer(player);
+                head_meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&6" + player.getName()));
+                head.setItemMeta(head_meta);
 
-        // Zombie Disguise
-        final ItemStack zombie = player.hasPermission("disguise.zombie") ? this.zombie : zombieDisabled;
+                // Skeleton Disguise
+                final ItemStack skeleton = player.hasPermission("disguise.skelaton") ? this.skeleton : skeletonDisabled;
 
-        // Spider Disguise
-        final ItemStack spider = player.hasPermission("disguise.spider") ? this.spider : spiderDisabled;
+                // Zombie Disguise
+                final ItemStack zombie = player.hasPermission("disguise.zombie") ? this.zombie : zombieDisabled;
 
-        // Creeper Disguise
-        final ItemStack creeper = player.hasPermission("disguise.creeper") ? this.creeper : creeperDisabled;
+                // Spider Disguise
+                final ItemStack spider = player.hasPermission("disguise.spider") ? this.spider : spiderDisabled;
 
-        // CaveSpider Disguise
-        final ItemStack cave_spider = player.hasPermission("disguise.cavespider") ? caveSpider : caveSpiderDisabled;
+                // Creeper Disguise
+                final ItemStack creeper = player.hasPermission("disguise.creeper") ? this.creeper : creeperDisabled;
 
-        // Witch Disguise
-        final ItemStack witch = player.hasPermission("disguise.witch") ? this.witch : witchDisabled;
+                // CaveSpider Disguise
+                final ItemStack cave_spider = player.hasPermission("disguise.cavespider") ? caveSpider : caveSpiderDisabled;
 
-        // Slime Disguise
-        final ItemStack slime = player.hasPermission("disguise.slime") ? this.slime : slimeDisabled;
+                // Witch Disguise
+                final ItemStack witch = player.hasPermission("disguise.witch") ? this.witch : witchDisabled;
 
-        // Place items in the gui
-        gui.setItem(10, skeleton);
-        gui.setItem(11, zombie);
-        gui.setItem(12, spider);
-        gui.setItem(13, creeper);
-        gui.setItem(14, cave_spider);
-        gui.setItem(15, witch);
-        gui.setItem(16, slime);
+                // Slime Disguise
+                final ItemStack slime = player.hasPermission("disguise.slime") ? this.slime : slimeDisabled;
 
-        gui.setItem(36, undis);
-        gui.setItem(40, head);
+                // Place items in the gui
+                gui.setItem(10, skeleton);
+                gui.setItem(11, zombie);
+                gui.setItem(12, spider);
+                gui.setItem(13, creeper);
+                gui.setItem(14, cave_spider);
+                gui.setItem(15, witch);
+                gui.setItem(16, slime);
 
-        // Moved filler operation to after placing our items in
-        for (int i = 0; i < gui.getSize(); i++) { // < is exclusive, it'll still stop at 44 just making the code more dynamic
-            if (gui.getItem(i) == null) {
-                gui.setItem(i, glass);
+                gui.setItem(36, undis);
+                gui.setItem(40, head);
+
+                // Moved filler operation to after placing our items in
+                for (int i = 0; i < gui.getSize(); i++) { // < is exclusive, it'll still stop at 44 just making the code more dynamic
+                    if (gui.getItem(i) == null) {
+                        gui.setItem(i, glass);
+                    }
+                }
+
+                player.openInventory(gui);
             }
-        }
-
-        player.openInventory(gui);
         return true;
     }
 

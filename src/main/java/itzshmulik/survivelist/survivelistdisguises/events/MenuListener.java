@@ -67,8 +67,47 @@ public class MenuListener implements Listener {
 
                 player.setInvisible(true);
             }
+        }else if(Disguise.CREEPER.testItem(currentItem)) {
+            if(player.hasPermission("disguise.creeper")){
 
-        } else if (currentItem.getType() == Material.RED_WOOL) { // Undis item
+                player.closeInventory();
+                disguised.put(player, Disguise.CREEPER);
+
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
+
+                player.setInvisible(true);
+            }
+        } else if (Disguise.CAVE_SPIDER.testItem(currentItem)) {
+            if(player.hasPermission("disguise.cavespider")){
+
+                player.closeInventory();
+                disguised.put(player, Disguise.CAVE_SPIDER);
+
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
+
+                player.setInvisible(true);
+            }else if(Disguise.WITCH.testItem(currentItem)){
+                if(player.hasPermission("disguise.witch")){
+
+                    player.closeInventory();
+                    disguised.put(player, Disguise.WITCH);
+
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
+
+                    player.setInvisible(true);
+                }
+            }else if(Disguise.SLIME.testItem(currentItem)){
+                if(player.hasPermission("disguise.slime")){
+
+                    player.closeInventory();
+                    disguised.put(player, Disguise.SLIME);
+
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
+
+                    player.setInvisible(true);
+                }
+            }
+        }else if (currentItem.getType() == Material.RED_WOOL) { // Undis item
             if (disguised.containsKey(player)) {
 
                 player.closeInventory();
