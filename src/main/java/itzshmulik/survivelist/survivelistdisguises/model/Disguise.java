@@ -11,6 +11,7 @@ public enum Disguise {
     CAVE_SPIDER(Material.CAVE_SPIDER_SPAWN_EGG, "&lCave Spider Disguise"),
     WITCH(Material.WITCH_SPAWN_EGG, "&lWitch Disguise"),
     SLIME(Material.SLIME_BALL, "&lSlime Disguise"),
+    ENDERMAN(Material.ENDER_PEARL, "&lEnderman Disguise"),
     ;
 
     public final ItemStack menuItem;

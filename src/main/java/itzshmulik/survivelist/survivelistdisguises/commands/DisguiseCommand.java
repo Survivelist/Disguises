@@ -27,9 +27,9 @@ public class DisguiseCommand implements CommandExecutor {
 
     // Items to show in the gui for each mob
     //style=enabled
-    final ItemStack skeleton, zombie, spider, creeper, caveSpider, witch, slime;
+    final ItemStack skeleton, zombie, spider, creeper, caveSpider, witch, slime, enderman;
     //style=disabled (copy type)
-    final ItemStack skeletonDisabled, zombieDisabled, spiderDisabled, creeperDisabled, caveSpiderDisabled, witchDisabled, slimeDisabled;
+    final ItemStack skeletonDisabled, zombieDisabled, spiderDisabled, creeperDisabled, caveSpiderDisabled, witchDisabled, slimeDisabled, endermanDisabled;
 
     public DisguiseCommand() {
         // Names for the gui items
@@ -62,6 +62,9 @@ public class DisguiseCommand implements CommandExecutor {
         //slime
         this.slime = makeMenuItem(Disguise.SLIME);
         slimeDisabled = makeMenuItemDisabled(Disguise.SLIME);
+        //enderman
+        this.enderman = makeMenuItem(Disguise.ENDERMAN);
+        endermanDisabled = makeMenuItemDisabled(Disguise.ENDERMAN);
     }
 
     @SuppressWarnings("deprecation")
@@ -118,6 +121,9 @@ public class DisguiseCommand implements CommandExecutor {
                 // Slime Disguise
                 final ItemStack slime = player.hasPermission("disguise.slime") ? this.slime : slimeDisabled;
 
+                // EnderMan Disguise
+                final ItemStack enderman = player.hasPermission("disguise.enderman") ? this.enderman : endermanDisabled;
+
                 // Place items in the gui
                 gui.setItem(10, skeleton);
                 gui.setItem(11, zombie);
@@ -126,6 +132,7 @@ public class DisguiseCommand implements CommandExecutor {
                 gui.setItem(14, cave_spider);
                 gui.setItem(15, witch);
                 gui.setItem(16, slime);
+                gui.setItem(19, enderman);
 
                 gui.setItem(36, undis);
                 gui.setItem(40, head);
