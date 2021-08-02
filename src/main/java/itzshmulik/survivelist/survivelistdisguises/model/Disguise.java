@@ -14,10 +14,12 @@ public enum Disguise {
     ;
 
     public final ItemStack menuItem;
+    public final Material menuMaterial;
     public final String menuText;
 
     Disguise(Material menuMaterial, String menuText) {
         this.menuItem = new ItemStack(menuMaterial);
+        this.menuMaterial = menuMaterial;
         this.menuText = menuText;
     }
 }
