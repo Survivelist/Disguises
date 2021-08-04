@@ -12,6 +12,7 @@ public enum Disguise {
     WITCH(Material.WITCH_SPAWN_EGG, "&lWitch Disguise"),
     SLIME(Material.SLIME_BALL, "&lSlime Disguise"),
     ENDERMAN(Material.ENDER_PEARL, "&lEnderman Disguise"),
+    BLAZE(Material.BLAZE_ROD, "&lBlaze Disguise"),
     ;
 
     public final ItemStack menuItem;

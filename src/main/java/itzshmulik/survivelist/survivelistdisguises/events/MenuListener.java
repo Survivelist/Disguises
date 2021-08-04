@@ -25,6 +25,12 @@ public class MenuListener implements Listener {
         if (!e.getView().getTitle().equals(DisguiseCommand.TITLE)) {
             return;
         }
+
+        if(e.getView().getBottomInventory() != e.getClickedInventory()){
+            //Cancel Click
+            e.setCancelled(true);
+        }
+
         // get item in the clicked slot
         final ItemStack currentItem = e.getCurrentItem();
         if (currentItem == null) return; // Ignore events where the slot is empty
@@ -111,6 +117,16 @@ public class MenuListener implements Listener {
 
                     player.closeInventory();
                     disguised.put(player, Disguise.ENDERMAN);
+
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
+
+                    player.setInvisible(true);
+                }
+            }else if(Disguise.BLAZE.testItem(currentItem)){
+                if(player.hasPermission("disguise.blaze")){
+
+                    player.closeInventory();
+                    disguised.put(player, Disguise.BLAZE);
 
                     player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
 

@@ -27,9 +27,9 @@ public class DisguiseCommand implements CommandExecutor {
 
     // Items to show in the gui for each mob
     //style=enabled
-    final ItemStack skeleton, zombie, spider, creeper, caveSpider, witch, slime, enderman;
+    final ItemStack skeleton, zombie, spider, creeper, caveSpider, witch, slime, enderman, blaze;
     //style=disabled (copy type)
-    final ItemStack skeletonDisabled, zombieDisabled, spiderDisabled, creeperDisabled, caveSpiderDisabled, witchDisabled, slimeDisabled, endermanDisabled;
+    final ItemStack skeletonDisabled, zombieDisabled, spiderDisabled, creeperDisabled, caveSpiderDisabled, witchDisabled, slimeDisabled, endermanDisabled, blazeDisabled;
 
     public DisguiseCommand() {
         // Names for the gui items
@@ -65,6 +65,9 @@ public class DisguiseCommand implements CommandExecutor {
         //enderman
         this.enderman = makeMenuItem(Disguise.ENDERMAN);
         endermanDisabled = makeMenuItemDisabled(Disguise.ENDERMAN);
+        //blaze
+        this.blaze = makeMenuItem(Disguise.BLAZE);
+        blazeDisabled = makeMenuItemDisabled(Disguise.BLAZE);
     }
 
     @SuppressWarnings("deprecation")
