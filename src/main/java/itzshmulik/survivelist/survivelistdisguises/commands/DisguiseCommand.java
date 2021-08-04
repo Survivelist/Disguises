@@ -127,6 +127,9 @@ public class DisguiseCommand implements CommandExecutor {
                 // EnderMan Disguise
                 final ItemStack enderman = player.hasPermission("disguise.enderman") ? this.enderman : endermanDisabled;
 
+                // Blaze Disguise
+                final ItemStack blaze = player.hasPermission("disguise.blaze") ? this.blaze : blazeDisabled;
+
                 // Place items in the gui
                 gui.setItem(10, skeleton);
                 gui.setItem(11, zombie);
@@ -136,6 +139,7 @@ public class DisguiseCommand implements CommandExecutor {
                 gui.setItem(15, witch);
                 gui.setItem(16, slime);
                 gui.setItem(19, enderman);
+                gui.setItem(20, blaze);
 
                 gui.setItem(36, undis);
                 gui.setItem(40, head);
