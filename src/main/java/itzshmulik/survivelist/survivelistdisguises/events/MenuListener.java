@@ -167,6 +167,8 @@ public class MenuListener implements Listener {
             if(player.hasPermission("disguise.phantom")){
 
                 player.closeInventory();
+                disguised.put(player, Disguise.PHANTOM);
+
                 player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
 
                 player.setInvisible(true);
@@ -175,6 +177,8 @@ public class MenuListener implements Listener {
           if(player.hasPermission("disguise.shulker")){
 
               player.closeInventory();
+             disguised.put(player, Disguise.SHULKER);
+
               player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
 
               player.setInvisible(true);
@@ -183,6 +187,8 @@ public class MenuListener implements Listener {
           if(player.hasPermission("disguise.piglin")){
 
               player.closeInventory();
+              disguised.put(player, Disguise.PIGLIN);
+
               player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
 
               player.setInvisible(true);
@@ -191,6 +197,8 @@ public class MenuListener implements Listener {
           if(player.hasPermission("disguise.witherskel")){
 
               player.closeInventory();
+              disguised.put(player, Disguise.WITHERSKEL);
+
               player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
 
               player.setInvisible(true);
