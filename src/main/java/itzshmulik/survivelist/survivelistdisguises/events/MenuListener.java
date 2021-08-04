@@ -25,6 +25,8 @@ public class MenuListener implements Listener {
         if (!e.getView().getTitle().equals(DisguiseCommand.TITLE)) {
             return;
         }
+        // Cancel the click
+        e.setCancelled(true);
         // get item in the clicked slot
         final ItemStack currentItem = e.getCurrentItem();
         if (currentItem == null) return; // Ignore events where the slot is empty
