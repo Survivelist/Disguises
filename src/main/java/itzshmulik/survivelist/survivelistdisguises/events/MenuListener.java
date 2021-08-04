@@ -92,47 +92,109 @@ public class MenuListener implements Listener {
                 player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
 
                 player.setInvisible(true);
-            }else if(Disguise.WITCH.testItem(currentItem)){
-                if(player.hasPermission("disguise.witch")){
-
-                    player.closeInventory();
-                    disguised.put(player, Disguise.WITCH);
-
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
-
-                    player.setInvisible(true);
-                }
-            }else if(Disguise.SLIME.testItem(currentItem)){
-                if(player.hasPermission("disguise.slime")){
-
-                    player.closeInventory();
-                    disguised.put(player, Disguise.SLIME);
-
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
-
-                    player.setInvisible(true);
-                }
-            }else if(Disguise.ENDERMAN.testItem(currentItem)){
-                if(player.hasPermission("disguise.enderman")){
-
-                    player.closeInventory();
-                    disguised.put(player, Disguise.ENDERMAN);
-
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
-
-                    player.setInvisible(true);
-                }
-            }else if(Disguise.BLAZE.testItem(currentItem)){
-                if(player.hasPermission("disguise.blaze")){
-
-                    player.closeInventory();
-                    disguised.put(player, Disguise.BLAZE);
-
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
-
-                    player.setInvisible(true);
-                }
             }
+        } else if(Disguise.WITCH.testItem(currentItem)){
+            if(player.hasPermission("disguise.witch")){
+
+                player.closeInventory();
+                disguised.put(player, Disguise.WITCH);
+
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
+
+                player.setInvisible(true);
+            }
+        }else if(Disguise.SLIME.testItem(currentItem)){
+            if(player.hasPermission("disguise.slime")){
+
+                player.closeInventory();
+                disguised.put(player, Disguise.SLIME);
+
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
+
+                player.setInvisible(true);
+            }
+        }else if(Disguise.ENDERMAN.testItem(currentItem)){
+            if(player.hasPermission("disguise.enderman")){
+
+                player.closeInventory();
+                disguised.put(player, Disguise.ENDERMAN);
+
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
+
+                player.setInvisible(true);
+            }
+        }else if(Disguise.BLAZE.testItem(currentItem)){
+            if(player.hasPermission("disguise.blaze")){
+
+                player.closeInventory();
+                disguised.put(player, Disguise.BLAZE);
+
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
+
+                player.setInvisible(true);
+            }
+        }else if(Disguise.GUARDIAN.testItem(currentItem)){
+            if(player.hasPermission("disguise.guardian")){
+
+                player.closeInventory();
+                disguised.put(player, Disguise.GUARDIAN);
+
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
+
+                player.setInvisible(true);
+            }
+        }else if(Disguise.PILLAGER.testItem(currentItem)){
+            if(player.hasPermission("disguise.pillager")){
+
+                player.closeInventory();
+                disguised.put(player, Disguise.PILLAGER);
+
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
+
+                player.setInvisible(true);
+            }
+        }else if(Disguise.MAGMA.testItem(currentItem)){
+            if(player.hasPermission("disguise.magma")){
+
+                player.closeInventory();
+                disguised.put(player, Disguise.MAGMA);
+
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
+
+                player.setInvisible(true);
+            }
+        }else if(Disguise.PHANTOM.testItem(currentItem)){
+            if(player.hasPermission("disguise.phantom")){
+
+                player.closeInventory();
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
+
+                player.setInvisible(true);
+            }
+        }else if(Disguise.SHULKER.testItem(currentItem)){
+          if(player.hasPermission("disguise.shulker")){
+
+              player.closeInventory();
+              player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
+
+              player.setInvisible(true);
+          }
+        }else if(Disguise.PIGLIN.testItem(currentItem)){
+          if(player.hasPermission("disguise.piglin")){
+
+              player.closeInventory();
+              player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
+
+              player.setInvisible(true);
+          }
+        }else if(Disguise.WITHERSKEL.testItem(currentItem)){
+          if(player.hasPermission("disguise.witherskel")){
+
+              player.closeInventory();
+              player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
+
+              player.setInvisible(true);
+          }
         }else if (currentItem.getType() == Material.RED_WOOL) { // Undis item
             if (disguised.containsKey(player)) {
 

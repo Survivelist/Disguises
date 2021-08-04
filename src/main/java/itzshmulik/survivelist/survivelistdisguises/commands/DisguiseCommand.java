@@ -27,9 +27,9 @@ public class DisguiseCommand implements CommandExecutor {
 
     // Items to show in the gui for each mob
     //style=enabled
-    final ItemStack skeleton, zombie, spider, creeper, caveSpider, witch, slime, enderman, blaze;
+    final ItemStack skeleton, zombie, spider, creeper, caveSpider, witch, slime, enderman, blaze, guardian, pillager, magma, phantom, shulker, piglin, witherskel;
     //style=disabled (copy type)
-    final ItemStack skeletonDisabled, zombieDisabled, spiderDisabled, creeperDisabled, caveSpiderDisabled, witchDisabled, slimeDisabled, endermanDisabled, blazeDisabled;
+    final ItemStack skeletonDisabled, zombieDisabled, spiderDisabled, creeperDisabled, caveSpiderDisabled, witchDisabled, slimeDisabled, endermanDisabled, blazeDisabled, guardianDisabled, pillagerDisabled, magmaDisabled, phantomDisabled, shulkerDisabled, piglinDisabled, witherskelDisabled;
 
     public DisguiseCommand() {
         // Names for the gui items
@@ -68,6 +68,27 @@ public class DisguiseCommand implements CommandExecutor {
         //blaze
         this.blaze = makeMenuItem(Disguise.BLAZE);
         blazeDisabled = makeMenuItemDisabled(Disguise.BLAZE);
+        //guardian
+        this.guardian = makeMenuItem(Disguise.GUARDIAN);
+        guardianDisabled = makeMenuItemDisabled(Disguise.GUARDIAN);
+        //pillager
+        this.pillager = makeMenuItem(Disguise.PILLAGER);
+        pillagerDisabled = makeMenuItemDisabled(Disguise.PILLAGER);
+        //magma
+        this.magma = makeMenuItem(Disguise.MAGMA);
+        magmaDisabled = makeMenuItemDisabled(Disguise.MAGMA);
+        //phantom
+        this.phantom = makeMenuItem(Disguise.PHANTOM);
+        phantomDisabled = makeMenuItemDisabled(Disguise.PHANTOM);
+        //shulker
+        this.shulker = makeMenuItem(Disguise.SHULKER);
+        shulkerDisabled = makeMenuItemDisabled(Disguise.SHULKER);
+        //piglin
+        this.piglin = makeMenuItem(Disguise.PIGLIN);
+        piglinDisabled = makeMenuItemDisabled(Disguise.PIGLIN);
+        //wither skelaton
+        this.witherskel = makeMenuItem(Disguise.WITHERSKEL);
+        witherskelDisabled = makeMenuItemDisabled(Disguise.WITHERSKEL);
     }
 
     @SuppressWarnings("deprecation")
@@ -92,7 +113,7 @@ public class DisguiseCommand implements CommandExecutor {
                 // Player
                 Player player = (Player) sender;
 
-                Inventory gui = Bukkit.createInventory(player, 45, TITLE);
+                Inventory gui = Bukkit.createInventory(player, 54, TITLE);
 
                 // Names for the gui items (common forms moved to constructor)
 
@@ -130,6 +151,27 @@ public class DisguiseCommand implements CommandExecutor {
                 // Blaze Disguise
                 final ItemStack blaze = player.hasPermission("disguise.blaze") ? this.blaze : blazeDisabled;
 
+                // Guardian Disguise
+                final ItemStack guardian = player.hasPermission("disguise.guardian") ? this.guardian : guardianDisabled;
+
+                // Pillager Disguise
+                final ItemStack pillager = player.hasPermission("disguise.pillager") ? this.pillager : pillagerDisabled;
+
+                // MagmaCube Disguise
+                final ItemStack magma = player.hasPermission("disguise.magma") ? this.magma : magmaDisabled;
+
+                // Phantom Disguise
+                final ItemStack phantom = player.hasPermission("disguise.phantom") ? this.phantom : phantomDisabled;
+
+                // Shulker Disguise
+                final ItemStack shulker = player.hasPermission("disguise.shulker") ? this.shulker : shulkerDisabled;
+
+                // Piglin Disguise
+                final ItemStack piglin = player.hasPermission("disguise.piglin") ? this.piglin : piglinDisabled;
+
+                // WitherSkelaton Disguise
+                final ItemStack witherskel = player.hasPermission("disguise.witherskel") ? this.witherskel : witherskelDisabled;
+
                 // Place items in the gui
                 gui.setItem(10, skeleton);
                 gui.setItem(11, zombie);
@@ -140,9 +182,16 @@ public class DisguiseCommand implements CommandExecutor {
                 gui.setItem(16, slime);
                 gui.setItem(19, enderman);
                 gui.setItem(20, blaze);
+                gui.setItem(21, guardian);
+                gui.setItem(22, pillager);
+                gui.setItem(23, magma);
+                gui.setItem(24, phantom);
+                gui.setItem(25, shulker);
+                gui.setItem(28, piglin);
+                gui.setItem(29, witherskel);
 
-                gui.setItem(36, undis);
-                gui.setItem(40, head);
+                gui.setItem(45, undis);
+                gui.setItem(49, head);
 
                 // Moved filler operation to after placing our items in
                 for (int i = 0; i < gui.getSize(); i++) { // < is exclusive, it'll still stop at 44 just making the code more dynamic

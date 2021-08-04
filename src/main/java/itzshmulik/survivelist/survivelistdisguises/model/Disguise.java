@@ -13,6 +13,13 @@ public enum Disguise {
     SLIME(Material.SLIME_BALL, "&lSlime Disguise"),
     ENDERMAN(Material.ENDER_PEARL, "&lEnderman Disguise"),
     BLAZE(Material.BLAZE_ROD, "&lBlaze Disguise"),
+    GUARDIAN(Material.PRISMARINE_SHARD, "&lGuardian Disguise"),
+    PILLAGER(Material.CROSSBOW, "&lPillager Disguise"),
+    MAGMA(Material.MAGMA_CREAM, "&lMagma Cube Disguise"),
+    PHANTOM(Material.PHANTOM_MEMBRANE, "&lPhantom Disguise"),
+    SHULKER(Material.SHULKER_BOX, "&lShulker Disguise"),
+    PIGLIN(Material.GOLD_INGOT, "&lPiglin Disguise"),
+    WITHERSKEL(Material.WITHER_SKELETON_SKULL, "&lWither Skelaton Disguise"),
     ;
 
     public final ItemStack menuItem;
