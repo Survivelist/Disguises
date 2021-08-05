@@ -22,7 +22,9 @@ public enum Disguise {
     WITHERSKEL(Material.WITHER_SKELETON_SKULL, "&lWither Skelaton Disguise"),
     SILVERFISH(Material.SILVERFISH_SPAWN_EGG, "&lSilverfish Disguise"),
     BRUTE(Material.GOLDEN_AXE, "&lPiglin Brute Disguise"),
-    DROWNED(Material.TRIDENT, "&lDrowned Disguise")
+    DROWNED(Material.TRIDENT, "&lDrowned Disguise"),
+    ENDERMITE(Material.ENDERMITE_SPAWN_EGG, "&lEndermite Disguise"),
+    STRAY(Material.STRAY_SPAWN_EGG, "&lStray Disguise"),
     ;
 
     public final ItemStack menuItem;

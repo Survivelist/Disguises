@@ -27,9 +27,9 @@ public class DisguiseCommand implements CommandExecutor {
 
     // Items to show in the gui for each mob
     //style=enabled
-    final ItemStack skeleton, zombie, spider, creeper, caveSpider, witch, slime, enderman, blaze, guardian, pillager, magma, phantom, shulker, piglin, witherskel, silverfish, brute, drowned;
+    final ItemStack skeleton, zombie, spider, creeper, caveSpider, witch, slime, enderman, blaze, guardian, pillager, magma, phantom, shulker, piglin, witherskel, silverfish, brute, drowned, endermite, stray;
     //style=disabled (copy type)
-    final ItemStack skeletonDisabled, zombieDisabled, spiderDisabled, creeperDisabled, caveSpiderDisabled, witchDisabled, slimeDisabled, endermanDisabled, blazeDisabled, guardianDisabled, pillagerDisabled, magmaDisabled, phantomDisabled, shulkerDisabled, piglinDisabled, witherskelDisabled, silverfishDisabled, bruteDisabled, drownedDisabled;
+    final ItemStack skeletonDisabled, zombieDisabled, spiderDisabled, creeperDisabled, caveSpiderDisabled, witchDisabled, slimeDisabled, endermanDisabled, blazeDisabled, guardianDisabled, pillagerDisabled, magmaDisabled, phantomDisabled, shulkerDisabled, piglinDisabled, witherskelDisabled, silverfishDisabled, bruteDisabled, drownedDisabled, endermiteDisabled, strayDisabled;
 
     public DisguiseCommand() {
         // Names for the gui items
@@ -98,6 +98,12 @@ public class DisguiseCommand implements CommandExecutor {
         //drowned
         this.drowned = makeMenuItem(Disguise.DROWNED);
         drownedDisabled = makeMenuItemDisabled(Disguise.DROWNED);
+        //endermite
+        this.endermite = makeMenuItem(Disguise.ENDERMITE);
+        endermiteDisabled = makeMenuItemDisabled(Disguise.ENDERMITE);
+        //stray
+        this.stray = makeMenuItem(Disguise.STRAY);
+        strayDisabled = makeMenuItemDisabled(Disguise.STRAY);
     }
 
     @SuppressWarnings("deprecation")
@@ -190,6 +196,12 @@ public class DisguiseCommand implements CommandExecutor {
                 // Drowned Disguise
                 final ItemStack drowned = player.hasPermission("disguise.drowned") ? this.drowned : drownedDisabled;
 
+                // Endermite Disguise
+                final ItemStack endermite = player.hasPermission("disguise.endermite") ? this.endermite : endermiteDisabled;
+
+                // Stray Disguise
+                final ItemStack stray = player.hasPermission("disguise.stray") ? this.stray : strayDisabled;
+
                 // Place items in the gui
                 gui.setItem(10, skeleton);
                 gui.setItem(11, zombie);
@@ -210,6 +222,8 @@ public class DisguiseCommand implements CommandExecutor {
                 gui.setItem(30, silverfish);
                 gui.setItem(31, brute);
                 gui.setItem(32, drowned);
+                gui.setItem(33, endermite);
+                gui.setItem(34, stray);
 
                 gui.setItem(45, undis);
                 gui.setItem(49, head);
