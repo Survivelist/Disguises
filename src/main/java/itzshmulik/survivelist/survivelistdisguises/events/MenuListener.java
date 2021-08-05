@@ -203,7 +203,17 @@ public class MenuListener implements Listener {
 
               player.setInvisible(true);
           }
-        }else if (currentItem.getType() == Material.RED_WOOL) { // Undis item
+        }else if(Disguise.SILVERFISH.testItem(currentItem)){
+          if(player.hasPermission("disguise.silverfish")){
+
+              player.closeInventory();
+              disguised.put(player, Disguise.SILVERFISH);
+
+              player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
+
+              player.setInvisible(true);
+          }
+        } else if (currentItem.getType() == Material.RED_WOOL) { // Undis item
             if (disguised.containsKey(player)) {
 
                 player.closeInventory();

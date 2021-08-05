@@ -20,6 +20,7 @@ public enum Disguise {
     SHULKER(Material.SHULKER_BOX, "&lShulker Disguise"),
     PIGLIN(Material.GOLD_INGOT, "&lPiglin Disguise"),
     WITHERSKEL(Material.WITHER_SKELETON_SKULL, "&lWither Skelaton Disguise"),
+    SILVERFISH(Material.SILVERFISH_SPAWN_EGG, "&lSilverfish Disguise"),
     ;
 
     public final ItemStack menuItem;

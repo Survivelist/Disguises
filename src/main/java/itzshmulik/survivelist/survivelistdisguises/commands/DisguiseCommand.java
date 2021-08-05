@@ -27,9 +27,9 @@ public class DisguiseCommand implements CommandExecutor {
 
     // Items to show in the gui for each mob
     //style=enabled
-    final ItemStack skeleton, zombie, spider, creeper, caveSpider, witch, slime, enderman, blaze, guardian, pillager, magma, phantom, shulker, piglin, witherskel;
+    final ItemStack skeleton, zombie, spider, creeper, caveSpider, witch, slime, enderman, blaze, guardian, pillager, magma, phantom, shulker, piglin, witherskel, silverfish;
     //style=disabled (copy type)
-    final ItemStack skeletonDisabled, zombieDisabled, spiderDisabled, creeperDisabled, caveSpiderDisabled, witchDisabled, slimeDisabled, endermanDisabled, blazeDisabled, guardianDisabled, pillagerDisabled, magmaDisabled, phantomDisabled, shulkerDisabled, piglinDisabled, witherskelDisabled;
+    final ItemStack skeletonDisabled, zombieDisabled, spiderDisabled, creeperDisabled, caveSpiderDisabled, witchDisabled, slimeDisabled, endermanDisabled, blazeDisabled, guardianDisabled, pillagerDisabled, magmaDisabled, phantomDisabled, shulkerDisabled, piglinDisabled, witherskelDisabled, silverfishDisabled;
 
     public DisguiseCommand() {
         // Names for the gui items
@@ -89,6 +89,9 @@ public class DisguiseCommand implements CommandExecutor {
         //wither skelaton
         this.witherskel = makeMenuItem(Disguise.WITHERSKEL);
         witherskelDisabled = makeMenuItemDisabled(Disguise.WITHERSKEL);
+        //silverfish
+        this.silverfish = makeMenuItem(Disguise.SILVERFISH);
+        silverfishDisabled = makeMenuItemDisabled(Disguise.SILVERFISH);
     }
 
     @SuppressWarnings("deprecation")
@@ -172,6 +175,9 @@ public class DisguiseCommand implements CommandExecutor {
                 // WitherSkelaton Disguise
                 final ItemStack witherskel = player.hasPermission("disguise.witherskel") ? this.witherskel : witherskelDisabled;
 
+                // Silverfish Disguise
+                final ItemStack silverfish = player.hasPermission("disguise.silverfish") ? this.silverfish : silverfishDisabled;
+
                 // Place items in the gui
                 gui.setItem(10, skeleton);
                 gui.setItem(11, zombie);
@@ -189,6 +195,7 @@ public class DisguiseCommand implements CommandExecutor {
                 gui.setItem(25, shulker);
                 gui.setItem(28, piglin);
                 gui.setItem(29, witherskel);
+                gui.setItem(30, silverfish);
 
                 gui.setItem(45, undis);
                 gui.setItem(49, head);
