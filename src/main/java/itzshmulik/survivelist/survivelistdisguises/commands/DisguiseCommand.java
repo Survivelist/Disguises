@@ -27,9 +27,9 @@ public class DisguiseCommand implements CommandExecutor {
 
     // Items to show in the gui for each mob
     //style=enabled
-    final ItemStack skeleton, zombie, spider, creeper, caveSpider, witch, slime, enderman, blaze, guardian, pillager, magma, phantom, shulker, piglin, witherskel, silverfish;
+    final ItemStack skeleton, zombie, spider, creeper, caveSpider, witch, slime, enderman, blaze, guardian, pillager, magma, phantom, shulker, piglin, witherskel, silverfish, brute, drowned;
     //style=disabled (copy type)
-    final ItemStack skeletonDisabled, zombieDisabled, spiderDisabled, creeperDisabled, caveSpiderDisabled, witchDisabled, slimeDisabled, endermanDisabled, blazeDisabled, guardianDisabled, pillagerDisabled, magmaDisabled, phantomDisabled, shulkerDisabled, piglinDisabled, witherskelDisabled, silverfishDisabled;
+    final ItemStack skeletonDisabled, zombieDisabled, spiderDisabled, creeperDisabled, caveSpiderDisabled, witchDisabled, slimeDisabled, endermanDisabled, blazeDisabled, guardianDisabled, pillagerDisabled, magmaDisabled, phantomDisabled, shulkerDisabled, piglinDisabled, witherskelDisabled, silverfishDisabled, bruteDisabled, drownedDisabled;
 
     public DisguiseCommand() {
         // Names for the gui items
@@ -92,6 +92,12 @@ public class DisguiseCommand implements CommandExecutor {
         //silverfish
         this.silverfish = makeMenuItem(Disguise.SILVERFISH);
         silverfishDisabled = makeMenuItemDisabled(Disguise.SILVERFISH);
+        //piglin brute
+        this.brute = makeMenuItem(Disguise.BRUTE);
+        bruteDisabled = makeMenuItemDisabled(Disguise.BRUTE);
+        //drowned
+        this.drowned = makeMenuItem(Disguise.DROWNED);
+        drownedDisabled = makeMenuItemDisabled(Disguise.DROWNED);
     }
 
     @SuppressWarnings("deprecation")
@@ -178,6 +184,12 @@ public class DisguiseCommand implements CommandExecutor {
                 // Silverfish Disguise
                 final ItemStack silverfish = player.hasPermission("disguise.silverfish") ? this.silverfish : silverfishDisabled;
 
+                // Piglin Brute Disguise
+                final ItemStack brute = player.hasPermission("disguise.brute") ? this.brute : bruteDisabled;
+
+                // Drowned Disguise
+                final ItemStack drowned = player.hasPermission("disguise.drowned") ? this.drowned : drownedDisabled;
+
                 // Place items in the gui
                 gui.setItem(10, skeleton);
                 gui.setItem(11, zombie);
@@ -196,6 +208,8 @@ public class DisguiseCommand implements CommandExecutor {
                 gui.setItem(28, piglin);
                 gui.setItem(29, witherskel);
                 gui.setItem(30, silverfish);
+                gui.setItem(31, brute);
+                gui.setItem(32, drowned);
 
                 gui.setItem(45, undis);
                 gui.setItem(49, head);

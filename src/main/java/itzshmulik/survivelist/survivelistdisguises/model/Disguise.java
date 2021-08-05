@@ -21,6 +21,8 @@ public enum Disguise {
     PIGLIN(Material.GOLD_INGOT, "&lPiglin Disguise"),
     WITHERSKEL(Material.WITHER_SKELETON_SKULL, "&lWither Skelaton Disguise"),
     SILVERFISH(Material.SILVERFISH_SPAWN_EGG, "&lSilverfish Disguise"),
+    BRUTE(Material.GOLDEN_AXE, "&lPiglin Brute Disguise"),
+    DROWNED(Material.TRIDENT, "&lDrowned Disguise")
     ;
 
     public final ItemStack menuItem;

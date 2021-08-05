@@ -213,6 +213,26 @@ public class MenuListener implements Listener {
 
               player.setInvisible(true);
           }
+        }else if(Disguise.BRUTE.testItem(currentItem)){
+            if(player.hasPermission("disguise.brute")){
+
+                player.closeInventory();
+                disguised.put(player, Disguise.BRUTE);
+
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
+
+                player.setInvisible(true);
+            }
+        }else if(Disguise.DROWNED.testItem(currentItem)){
+          if(player.hasPermission("disguise.drowned")){
+
+              player.closeInventory();
+              disguised.put(player, Disguise.DROWNED);
+
+              player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + d_msg));
+
+              player.setInvisible(true);
+          }
         } else if (currentItem.getType() == Material.RED_WOOL) { // Undis item
             if (disguised.containsKey(player)) {
 
