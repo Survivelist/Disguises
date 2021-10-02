@@ -38,6 +38,12 @@ public final class SurvivelistDisguises extends JavaPlugin {
         headsByPlayer.clear();
     }
 
+    /**
+     * Get a player head item by its base64 texture value.
+     *
+     * @param textureValue the texture's Base64 string
+     * @return a new player head item
+     */
     public static ItemStack headByTexture(@NotNull String textureValue) {
         final ItemStack itemStack = instance.headsByTexture.get(textureValue);
         if (itemStack != null) return new ItemStack(itemStack);
@@ -48,6 +54,16 @@ public final class SurvivelistDisguises extends JavaPlugin {
         return new ItemStack(generated);
     }
 
+    /**
+     * Get a custom-named player head item by its base64 texture value.
+     *
+     * @param textureValue the texture's Base64 string
+     * @param itemName a custom item name
+     * @return a new player head item
+     * @implNote If {@code itemName} is null, this implementation simply
+     *           delegates to {@link #headByTexture(String)} where
+     *           {@code textureValue} is passed as the String parameter.
+     */
     public static ItemStack headByTextureWithName(@NotNull String textureValue, String itemName) {
         if (itemName == null) return headByTexture(textureValue);
         final String cacheKey = textureValue + ":" + itemName;
@@ -60,6 +76,12 @@ public final class SurvivelistDisguises extends JavaPlugin {
         return new ItemStack(generated);
     }
 
+    /**
+     * Get a player head item for a Bukkit player.
+     *
+     * @param player the player (may also be online)
+     * @return a new player head item
+     */
     public static ItemStack headByPlayer(@NotNull OfflinePlayer player) {
         final UUID uniqueId = player.getUniqueId();
         final ItemStack itemStack = instance.headsByPlayer.get(uniqueId);

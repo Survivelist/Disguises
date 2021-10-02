@@ -30,7 +30,7 @@ public interface HeadGrabber {
      * Works with {@code Player} as well.
      */
     class Player implements HeadGrabber {
-        private final OfflinePlayer player;
+        final OfflinePlayer player;
 
         /**
          * Produce heads for the given player.
@@ -45,7 +45,12 @@ public interface HeadGrabber {
         public @NotNull ItemStack generate() {
             final ItemStack head = new ItemStack(Material.PLAYER_HEAD);
             final SkullMeta meta = (SkullMeta) head.getItemMeta();
-            meta.setOwningPlayer(player);
+            // try to use paper's profile system for Bukkit (online) Player objects
+            if (player instanceof org.bukkit.entity.Player) {
+                meta.setPlayerProfile(((org.bukkit.entity.Player) player).getPlayerProfile());
+            } else {
+                meta.setOwningPlayer(player);
+            }
             head.setItemMeta(meta);
             return head;
         }
